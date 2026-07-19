@@ -1,0 +1,2028 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veridian National Bank | Secure Digital Banking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- SYSTEM VARIABLES (RED THEME) --- */
+    :root {
+      --primary: #160c0e;       /* Premium Deep Burgundy Black */
+      --primary-light: #2a161a; /* Warm Dark Cherry */
+      --accent: #e11d48;        /* Vibrant Crimson Red */
+      --accent-hover: #be123c;  /* Deep Rich Crimson */
+      --accent-glow: rgba(225, 29, 72, 0.15);
+      --bg: #ffffff;
+      --bg-soft: #faf5f5;       /* Soft warm-tinted off-white */
+      --ink: #160c0e;
+      --muted: #705c60;         /* Warm slate gray */
+      --border: #ebdce0;        /* Soft rose-tinted border */
+      
+      --radius-sm: 0.5rem;
+      --radius: 0.875rem;
+      --radius-lg: 1.5rem;
+      
+      --shadow-sm: 0 2px 8px -2px rgba(22, 12, 14, 0.08);
+      --shadow: 0 12px 34px -10px rgba(22, 12, 14, 0.12);
+      --shadow-lg: 0 22px 50px -15px rgba(22, 12, 14, 0.18);
+      
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* --- RESET & BASE --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* --- TYPOGRAPHY --- */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+    }
+
+    h1 { font-size: clamp(2.25rem, 5vw, 3.75rem); }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+    h4 { font-size: 1.1rem; }
+
+    p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    /* --- LAYOUT CONTAINERS --- */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    section {
+      padding: clamp(4rem, 8vw, 7rem) 0;
+      position: relative;
+    }
+
+    /* --- BUTTONS & INTERACTIVES --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 1.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      filter: brightness(1.2);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--accent-glow);
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-soft);
+      border-color: var(--border);
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border);
+      transform: translateY(-2px);
+    }
+
+    /* --- HEADER / NAVBAR --- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(235, 220, 224, 0.8);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+    }
+
+    .logo-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .link-signin {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .link-signin:hover {
+      color: var(--accent);
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+      background: radial-gradient(circle at 90% 10%, rgba(225, 29, 72, 0.08) 0%, rgba(255, 255, 255, 0) 60%),
+                  radial-gradient(circle at 10% 90%, rgba(22, 12, 14, 0.03) 0%, rgba(255, 255, 255, 0) 50%);
+      padding-top: clamp(3rem, 6vw, 6rem);
+      padding-bottom: clamp(4rem, 8vw, 8rem);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      align-self: flex-start;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-content h1 span {
+      background: linear-gradient(135deg, var(--primary) 30%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      max-width: 540px;
+    }
+
+    .ctas {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .trust-avatars {
+      display: flex;
+      margin-right: -0.5rem;
+    }
+
+    .trust-avatars img {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      margin-right: -0.5rem;
+      object-fit: cover;
+    }
+
+    .trust-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .trust-text strong {
+      color: var(--primary);
+    }
+
+    /* --- HERO VISUAL (CSS DASHBOARD MOCKUP) --- */
+    .hero-visual {
+      position: relative;
+    }
+
+    .dashboard-mock {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mock-user {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .mock-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: var(--border);
+      background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80');
+      background-size: cover;
+    }
+
+    .mock-user-info h5 {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .mock-user-info p {
+      font-size: 0.75rem;
+    }
+
+    .mock-badge {
+      background-color: rgba(225, 29, 72, 0.1);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .mock-balance-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #ffffff;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mock-balance-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(225, 29, 72, 0.2) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .mock-balance-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mock-balance-amount {
+      font-size: 1.85rem;
+      font-weight: 800;
+      margin: 0.25rem 0 0.75rem 0;
+    }
+
+    .mock-card-number {
+      font-family: monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      opacity: 0.9;
+    }
+
+    .mock-transactions h6 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .mock-tx-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--bg-soft);
+    }
+
+    .mock-tx-item:last-child {
+      border-bottom: none;
+    }
+
+    .mock-tx-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .mock-tx-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .mock-tx-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .mock-tx-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .mock-tx-amount {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .mock-tx-amount.positive {
+      color: #10b981; /* Keep standard financial green for deposits */
+    }
+
+    /* Floating elements */
+    .floating-card {
+      position: absolute;
+      background: #ffffff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 3;
+    }
+
+    .floating-card-1 {
+      bottom: -1.5rem;
+      left: -2rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-card-2 {
+      top: 4rem;
+      right: -2.5rem;
+      animation: float 6s ease-in-out infinite 3s;
+    }
+
+    .floating-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: rgba(225, 29, 72, 0.1);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .floating-info h6 {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .floating-info p {
+      font-size: 0.75rem;
+    }
+
+    /* --- TRUST BAR / STATS --- */
+    .stats-section {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 3rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-item p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* --- SECTION HEADERS --- */
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3.5rem auto;
+    }
+
+    .section-header h2 {
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    /* --- FEATURES / SERVICES --- */
+    .features-section {
+      background-color: var(--bg-soft);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: rgba(225, 29, 72, 0.3);
+    }
+
+    .icon-badge {
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: var(--radius);
+      background-color: rgba(225, 29, 72, 0.1);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* --- HOW IT WORKS --- */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+
+    .step-card {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-number {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background-color: var(--bg-soft);
+      border: 2px solid var(--border);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+      transition: var(--transition);
+    }
+
+    .step-card:hover .step-number {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    .step-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-card p {
+      font-size: 0.9rem;
+    }
+
+    /* --- CORE GRID (PRODUCTS) --- */
+    .products-section {
+      background-color: var(--bg-soft);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .product-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .product-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 0.35rem 0.85rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .product-info {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-info h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-info p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .product-features-list {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .product-features-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .product-features-list li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .product-action {
+      width: 100%;
+    }
+
+    /* --- TESTIMONIALS --- */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .testimonial-rating {
+      color: #fbbf24;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-size: 1.05rem;
+      color: var(--primary);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testimonial-author img {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .author-info p {
+      font-size: 0.8rem;
+    }
+
+    /* --- CONTACT SECTION --- */
+    .contact-section {
+      background-color: var(--bg-soft);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-detail-card {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .contact-detail-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--radius);
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-detail-text h4 {
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-detail-text p {
+      font-size: 0.95rem;
+    }
+
+    .contact-form-wrapper {
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.875rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--primary);
+      background-color: var(--bg-soft);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+
+    /* --- CTA BAND --- */
+    .cta-band {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .cta-band-content {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .cta-band h2 {
+      color: #ffffff;
+    }
+
+    .cta-band p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+    }
+
+    .cta-band .btn-accent {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-band .btn-accent:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 5rem 0 2.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .foot-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .foot-brand .logo {
+      color: #ffffff;
+    }
+
+    .foot-brand p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
+      max-width: 280px;
+    }
+
+    .foot-col h4 {
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .foot-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .foot-col ul a {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .foot-col ul a:hover {
+      color: var(--accent);
+      padding-left: 4px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #ffffff;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .foot-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .foot-bottom p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .foot-legal {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .foot-legal a {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .foot-legal a:hover {
+      color: var(--accent);
+    }
+
+    /* --- AUTH MODAL SYSTEM (CSS ONLY) --- */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(22, 12, 14, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 3rem;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+
+    .modal:target .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--primary);
+    }
+
+    .modal h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .modal p {
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .modal-footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .modal-footer a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* --- RESPONSIVE BREAKPOINTS --- */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .hero-visual {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .floating-card-2 {
+        right: -1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .foot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      nav {
+        display: none; /* Mobile menu fallback: focus on CTAs */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .ctas {
+        flex-direction: column;
+      }
+      .ctas > * {
+        width: 100%;
+      }
+      .foot-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .foot-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .floating-card {
+        display: none; /* Prevent clutter on small screens */
+      }
+      .contact-form-wrapper {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+
+<style id="__mintsite_fix__">
+/* ── mintsite auto-fix: prevent overlapping + force responsiveness ── */
+*, *::before, *::after { box-sizing:border-box; }
+html, body { max-width:100% !important; overflow-x:hidden !important; margin:0 !important; padding-left:0 !important; padding-right:0 !important; }
+body { position:relative; }
+h1, h2, h3, h4, p, a, span, button, label { overflow-wrap:break-word !important; word-break:break-word; max-width:100%; }
+img, svg, video, iframe { max-width:100% !important; height:auto; display:block; }
+
+/* ── Defensive default-styles override — kicks in when the AI (especially
+   Groq's llama-3.3-70b) skips styling links and buttons. Keeps every site
+   looking polished even when the AI's CSS is thin. ── */
+
+/* Links: no default blue/underline anywhere. The AI almost never overrides
+   this for footer/secondary links, so it leaks browser defaults. */
+a { color:inherit !important; text-decoration:none !important; }
+a:hover { text-decoration:none; }
+
+/* Footer column links: ensure they're light-on-dark, no underline, soft hover. */
+footer a, [class*="footer"] a { color:rgba(255,255,255,.78) !important; transition:color .15s; }
+footer a:hover, [class*="footer"] a:hover { color:#fff !important; }
+
+/* Footer headings (column titles like "Browse" "Account" "Follow"): uppercase
+   eyebrow style so they don't look like raw h4s. */
+footer h3, footer h4, footer h5, [class*="footer"] h3, [class*="footer"] h4 {
+  font-size:.78rem !important; letter-spacing:.08em !important; text-transform:uppercase !important;
+  color:rgba(255,255,255,.55) !important; font-weight:600 !important; margin-bottom:1rem !important;
+}
+/* Footer list items: no bullet, tight spacing. */
+footer ul, [class*="footer"] ul { list-style:none !important; padding-left:0 !important; margin:0 !important; }
+footer ul li, [class*="footer"] ul li { padding:.3rem 0 !important; }
+
+/* Buttons: never the chrome-default look. Round + cursor + smooth transition.
+   Specific .add-to-cart styling lives below this. */
+button:not(.cart-icon):not(.__ms-hamburger):not(.__ms-x):not(.__ms-cart-checkout) {
+  cursor:pointer; border-radius:.5rem; font-family:inherit; transition:transform .15s, box-shadow .15s, background .15s;
+}
+
+/* .add-to-cart — primary CTA on product cards. AI usually forgets the
+   gradient + padding even when we ask for it. Force a baseline. */
+.add-to-cart, [data-add-to-cart] {
+  display:inline-flex !important; align-items:center !important; gap:.4rem !important;
+  padding:.6rem 1.1rem !important;
+  border-radius:.55rem !important;
+  background:linear-gradient(135deg, var(--primary, #1d4ed8), color-mix(in srgb, var(--primary, #1d4ed8) 72%, #000)) !important;
+  color:#fff !important; font-weight:600 !important; font-size:.88rem !important;
+  border:0 !important; cursor:pointer !important;
+  box-shadow:0 6px 18px -6px rgba(0,0,0,.25) !important;
+  transition:transform .15s, box-shadow .15s, filter .15s !important;
+}
+.add-to-cart:hover, [data-add-to-cart]:hover {
+  transform:translateY(-1px) !important; filter:brightness(1.08) !important;
+  box-shadow:0 10px 26px -6px rgba(0,0,0,.35) !important;
+}
+
+/* Product price tag — bold, accent color (not raw body text). */
+.price, .product-card .price, [class*="price-row"] .price {
+  font-size:1.1rem !important; font-weight:700 !important;
+  color:var(--primary, #1d4ed8) !important;
+}
+
+/* ── Form fields — the AI very often leaves inputs/textareas browser-default
+   (no border radius, labels inline). Give every form a clean baseline so
+   contact / sign-in / sign-up forms always look intentional. ── */
+form input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+form textarea, form select {
+  display:block !important; width:100% !important; box-sizing:border-box !important;
+  padding:.7rem .9rem !important; margin-top:.35rem !important;
+  border:1px solid rgba(15,23,42,.16) !important; border-radius:.6rem !important;
+  background:#fff !important; color:#0f172a !important;
+  font-size:.95rem !important; font-family:inherit !important; line-height:1.4 !important;
+  transition:border-color .15s, box-shadow .15s !important;
+}
+form input::placeholder, form textarea::placeholder { color:#94a3b8 !important; }
+form input:focus, form textarea:focus, form select:focus {
+  outline:none !important; border-color:var(--primary,#6366f1) !important;
+  box-shadow:0 0 0 3px rgba(99,102,241,.18) !important;
+}
+form textarea { min-height:120px !important; resize:vertical !important; }
+form label {
+  display:block !important; margin-top:.9rem !important; margin-bottom:.1rem !important;
+  font-size:.85rem !important; font-weight:600 !important; color:#334155 !important;
+}
+/* Submit buttons inside forms get the primary look if the AI under-styled them. */
+form button[type="submit"], form .btn-primary {
+  display:inline-flex !important; align-items:center !important; justify-content:center !important;
+  gap:.4rem !important; margin-top:1.1rem !important;
+  padding:.75rem 1.4rem !important; border:0 !important; border-radius:.6rem !important;
+  background:linear-gradient(135deg, var(--primary,#1d4ed8), color-mix(in srgb, var(--primary,#1d4ed8) 72%, #000)) !important;
+  color:#fff !important; font-weight:600 !important; font-size:.95rem !important; cursor:pointer !important;
+}
+
+/* Generic primary/ghost buttons + nav links the AI may have under-styled. */
+.btn-primary, [class*="btn-primary"] {
+  background:linear-gradient(135deg, var(--primary, #1d4ed8), color-mix(in srgb, var(--primary, #1d4ed8) 72%, #000)) !important;
+  color:#fff !important; padding:.7rem 1.4rem !important;
+  border-radius:.6rem !important; border:0 !important; font-weight:600 !important;
+}
+
+/* Lists rendered by the AI in the body should not be bullet-defaulted blue. */
+main ul:not([role]):not([class]), main ol:not([role]):not([class]) {
+  list-style:none !important; padding-left:0 !important;
+}
+.blob, [class*="blob"], [class*="gradient-orb"], [class*="bg-blur"] {
+  position:fixed !important; z-index:0 !important; opacity:.15 !important;
+  pointer-events:none !important; max-width:500px !important; max-height:500px !important;
+}
+section, main, .hero, [id="home"], [id="features"], [id="pricing"],
+[id="testimonials"], [id="faq"], [id="contact"], [id="about"],
+[id="cta"], [id="how-it-works"], article, .container {
+  position:relative; z-index:1; max-width:100%;
+}
+header, nav.nav, .navbar, [class*="header"], [class*="navbar"] {
+  position:sticky !important; top:0 !important; z-index:50 !important;
+  background:rgba(255,255,255,.92) !important; backdrop-filter:blur(12px) !important;
+  -webkit-backdrop-filter:blur(12px) !important;
+}
+.hero-card, [class*="hero-card"], [class*="hero-image"], [class*="hero-visual"] {
+  max-width:100% !important; overflow:hidden;
+}
+[class*="grid"] { max-width:100%; }
+
+/* ── Bulletproof card grids: never collapse so narrow that text wraps one
+   letter per line. auto-fit + minmax keeps each card >=240px and wraps to
+   fewer columns instead of squishing. Overrides brittle repeat(3,1fr). ── */
+.product-grid, [class*="product-grid"], .grid-2, .grid-3, .grid-4,
+[class*="grid-2"], [class*="grid-3"], [class*="grid-4"] {
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)) !important;
+  gap:1.5rem !important; align-items:stretch !important;
+}
+/* If a grid lands on a SECTION's container by mistake, force heading, intro AND
+   the card grid to span the full row so cards lay out properly. Scoped to
+   sections only — footers use .container too and must keep their columns. */
+section > h1, section > h2, section > h3, section > p, section > .product-grid,
+section .container > h1, section .container > h2, section .container > h3,
+section .container > p, section .container > .product-grid {
+  grid-column:1 / -1 !important;
+}
+/* Price + Add to Cart never break to one-letter-per-line. */
+.price, .add-to-cart, [data-add-to-cart] { white-space:nowrap !important; }
+
+/* Keep section padding sane — huge AI padding (6-8rem) leaves big empty gaps
+   between components. Hero keeps its own padding. */
+section:not(.hero):not([class*="hero"]):not([id="home"]):not([id="hero"]) {
+  padding-top:clamp(2.5rem, 5vw, 4rem) !important;
+  padding-bottom:clamp(2.5rem, 5vw, 4rem) !important;
+}
+
+/* Non-home page headers reuse .hero (a 2-column flex) → their heading/text
+   children squish into a narrow column. Let them wrap + span full row. */
+.hero > .container, .hero-content, .hero .container { flex-wrap:wrap; }
+.hero > .container > h1, .hero > .container > h2, .hero > .container > h3,
+.hero > .container > p, .hero > .container > span, .hero > .container > .eyebrow,
+.hero > .container > .btn, .hero > .container > .ctas, .hero > .container > a {
+  flex-basis:100% !important; max-width:100% !important;
+}
+/* CTA-band button stays readable (white pill + brand-colour text). */
+.cta-band .btn, .cta-band a.btn, .cta-band button,
+.cta-section .btn, .cta-section a.btn {
+  background:#fff !important; color:var(--primary, #1d4ed8) !important; border-color:#fff !important;
+}
+
+/* Auth cards: tighter margin, sensible heading size (the AI's big clamp wraps
+   "Create Your account" one word per line), and no tall forced min-height. */
+.auth-card, [class*="auth-card"] { margin:1.5rem auto !important; }
+.auth-card h1, .auth-card h2, [class*="auth-card"] h1, [class*="auth-card"] h2 {
+  font-size:clamp(1.4rem, 3.5vw, 2rem) !important; line-height:1.2 !important;
+}
+[id="signin"], [id="signup"], [id="login"],
+[data-page="signin"], [data-page="signup"] { min-height:auto !important; }
+footer, [class*="footer"] { position:relative !important; z-index:1; max-width:100%; }
+
+/* ── TABLET (≤768px): grids→1col, hero stacks, slightly smaller type ── */
+@media(max-width:768px) {
+  .container, [class*="container"] { padding-left:1rem !important; padding-right:1rem !important; }
+  .hero, [class*="hero-grid"], [id="home"] > div, [id="home"] > .container > div {
+    display:flex !important; flex-direction:column !important; gap:1.5rem !important;
+  }
+  .hero-card, [class*="hero-card"], [class*="hero-image"], [class*="hero-visual"] {
+    max-width:100% !important; margin:0 auto !important; width:100% !important;
+  }
+  [class*="grid-3"], [class*="grid-4"], .grid-3, .grid-4, .grid-2, [class*="grid-2"] {
+    grid-template-columns:1fr 1fr !important; gap:1rem !important;
+  }
+  h1 { font-size:clamp(1.6rem,5vw,2.4rem) !important; line-height:1.15 !important; }
+  h2 { font-size:clamp(1.3rem,4vw,1.9rem) !important; line-height:1.2 !important; }
+  h3 { font-size:1rem !important; }
+  p, .lead { font-size:.95rem !important; }
+  section { padding-top:2.5rem !important; padding-bottom:2.5rem !important; }
+  .auth-card, [class*="auth-card"] { max-width:100% !important; margin:2rem 1rem !important; padding:1.5rem !important; }
+}
+
+/* ── PHONE (≤480px): everything stacks single column, type shrinks more ── */
+@media(max-width:480px) {
+  .container, [class*="container"] { padding-left:.85rem !important; padding-right:.85rem !important; }
+  /* Header: stack logo + nav vertically, smaller logo, hamburger pattern */
+  header > div, header > nav, .nav > .inner, [class*="header"] > div {
+    flex-wrap:wrap !important; gap:.5rem !important; padding-top:.5rem !important; padding-bottom:.5rem !important;
+    height:auto !important; min-height:56px !important;
+  }
+  header nav, header .links, [class*="header"] nav, [class*="nav-links"] {
+    display:flex !important; flex-wrap:wrap !important; gap:.25rem !important; width:100%; justify-content:center;
+  }
+  header nav a, header .links a, [class*="nav-links"] a {
+    padding:.35rem .65rem !important; font-size:.82rem !important;
+  }
+  header .auth, [class*="auth-buttons"], [class*="header-auth"] {
+    margin-left:0 !important; gap:.3rem !important;
+  }
+  header .auth a, [class*="auth-buttons"] a {
+    padding:.4rem .75rem !important; font-size:.8rem !important;
+  }
+  .logo { font-size:.95rem !important; }
+  .cart-icon { padding:6px !important; font-size:18px !important; }
+  /* Hero: stack and shrink */
+  .hero, [class*="hero-grid"] { gap:1rem !important; padding-top:1.5rem !important; }
+  h1 { font-size:clamp(1.4rem,7vw,1.9rem) !important; }
+  h2 { font-size:clamp(1.15rem,5vw,1.5rem) !important; }
+  /* All grids collapse to single column */
+  [class*="grid-3"], [class*="grid-4"], .grid-3, .grid-4, .grid-2, [class*="grid-2"],
+  .product-grid, [class*="product-grid"] {
+    grid-template-columns:1fr !important; gap:1rem !important;
+  }
+  /* Buttons: full-width-ish, touch-friendly */
+  .btn-primary, .btn-ghost, button[type="submit"], .ctas a, .ctas button {
+    width:auto !important; min-height:44px !important; padding:.75rem 1.25rem !important; font-size:.9rem !important;
+  }
+  .ctas { flex-direction:column !important; gap:.6rem !important; width:100%; }
+  .ctas > * { width:100% !important; text-align:center; }
+  /* Product/feature cards tighter */
+  .product-card, .card, article {
+    padding:1rem !important;
+  }
+  .product-card img, .card img { aspect-ratio:1/1 !important; }
+  /* Footer: stack columns */
+  footer, [class*="footer"] {
+    text-align:center; padding-top:2rem !important; padding-bottom:1.5rem !important;
+  }
+  footer .foot-grid, footer [class*="foot-grid"], footer .columns {
+    grid-template-columns:1fr !important; gap:1.5rem !important;
+  }
+  footer .brand-block, footer [class*="brand-block"] {
+    margin:0 auto; max-width:280px;
+  }
+  /* Section padding shrinks more on phones */
+  section { padding-top:2rem !important; padding-bottom:2rem !important; }
+  /* Tables (if any) become scrollable */
+  table { display:block; overflow-x:auto; white-space:nowrap; }
+}
+
+/* ── Hard safety net: any element that's wider than viewport gets wrapped ── */
+@media(max-width:768px) {
+  body > * { max-width:100vw !important; }
+  pre, code { white-space:pre-wrap !important; word-break:break-word !important; }
+}
+</style>
+</head>
+<body>
+
+  <!-- --- HEADER / NAVBAR --- -->
+  <header>
+    <div class="container nav-container">
+      <a href="#home" class="logo">
+        <div class="logo-icon">V</div>
+        Veridian
+      </a>
+      
+      <nav>
+        <a href="#home">Overview</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Support</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#signin-modal" class="link-signin">Sign In</a>
+        <a href="#signup-modal" class="btn btn-accent" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">Open Account</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- --- HERO SECTION --- -->
+  <section id="home" class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Next-Gen Banking Live
+        </div>
+        <h1>Smart banking for <span>tomorrow's</span> ambitions.</h1>
+        <p>Experience seamless financial management with Veridian. High-yield savings, premium credit options, and zero hidden fees—all inside a highly secure digital ecosystem.</p>
+        
+        <div class="ctas">
+          <a href="#signup-modal" class="btn btn-primary">Get Started in 5 Mins</a>
+          <a href="#services" class="btn btn-secondary">Explore Products</a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" alt="User" onerror="this.onerror=null;this.src='https://picsum.photos/seed/user1/100/100'">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="User" onerror="this.onerror=null;this.src='https://picsum.photos/seed/user2/100/100'">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" alt="User" onerror="this.onerror=null;this.src='https://picsum.photos/seed/user3/100/100'">
+          </div>
+          <div class="trust-text">
+            Trusted by <strong>140,000+</strong> active members nationwide.
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- CSS-based Interactive Dashboard Mockup -->
+        <div class="dashboard-mock">
+          <div class="mock-header">
+            <div class="mock-user">
+              <div class="mock-avatar"></div>
+              <div class="mock-user-info">
+                <h5>Sarah Jenkins</h5>
+                <p>Veridian Gold Member</p>
+              </div>
+            </div>
+            <span class="mock-badge">Active</span>
+          </div>
+
+          <div class="mock-balance-card">
+            <div class="mock-balance-label">Total Portfolio Value</div>
+            <div class="mock-balance-amount">$48,250.40</div>
+            <div class="mock-card-number">•••• •••• •••• 8842</div>
+          </div>
+
+          <div class="mock-transactions">
+            <h6>Recent Activity</h6>
+            <div class="mock-tx-item">
+              <div class="mock-tx-info">
+                <div class="mock-tx-icon">☕</div>
+                <div>
+                  <div class="mock-tx-name">Coffee House</div>
+                  <div class="mock-tx-date">Today, 9:41 AM</div>
+                </div>
+              </div>
+              <div class="mock-tx-amount">-$4.75</div>
+            </div>
+            <div class="mock-tx-item">
+              <div class="mock-tx-info">
+                <div class="mock-tx-icon">💻</div>
+                <div>
+                  <div class="mock-tx-name">SaaS Subscription</div>
+                  <div class="mock-tx-date">Yesterday</div>
+                </div>
+              </div>
+              <div class="mock-tx-amount">-$15.00</div>
+            </div>
+            <div class="mock-tx-item">
+              <div class="mock-tx-info">
+                <div class="mock-tx-icon">💰</div>
+                <div>
+                  <div class="mock-tx-name">Direct Deposit</div>
+                  <div class="mock-tx-date">Oct 15</div>
+                </div>
+              </div>
+              <div class="mock-tx-amount positive">+$2,450.00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Badges -->
+        <div class="floating-card floating-card-1">
+          <div class="floating-icon">🛡️</div>
+          <div class="floating-info">
+            <h6>FDIC Insured</h6>
+            <p>Up to $250,000 protection</p>
+          </div>
+        </div>
+
+        <div class="floating-card floating-card-2">
+          <div class="floating-icon">📈</div>
+          <div class="floating-info">
+            <h6>4.85% APY</h6>
+            <p>High-Yield Savings Rate</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- TRUST BAR / STATS --- -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <h3>$4.8B+</h3>
+        <p>Assets Under Management</p>
+      </div>
+      <div class="stat-item">
+        <h3>140K+</h3>
+        <p>Active Members</p>
+      </div>
+      <div class="stat-item">
+        <h3>99.99%</h3>
+        <p>Platform Uptime</p>
+      </div>
+      <div class="stat-item">
+        <h3>4.9★</h3>
+        <p>App Store Rating</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- FEATURES / SERVICES --- -->
+  <section id="services" class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Premium Services</div>
+        <h2>Designed for your financial lifestyle.</h2>
+        <p>We combine cutting-edge secure technology with human-centric support to deliver the banking experience you actually deserve.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon-badge">📱</div>
+          <h3>Seamless Mobile App</h3>
+          <p>Manage your transactions, deposit checks, and invest your spare change instantly with our top-rated iOS and Android apps.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-badge">🛡️</div>
+          <h3>Military-Grade Security</h3>
+          <p>Rest easy knowing your funds and personal data are protected by advanced multi-factor authentication and end-to-end encryption.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-badge">💳</div>
+          <h3>Zero Hidden Fees</h3>
+          <p>No monthly maintenance fees, no minimum balance penalties, and free ATM access at over 55,000 locations worldwide.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-badge">📊</div>
+          <h3>Smart Analytics</h3>
+          <p>Gain deep insights into your spending habits with automatically categorized transactions and monthly financial summaries.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-badge">⚡</div>
+          <h3>Instant Transfers</h3>
+          <p>Send and receive money in real-time to friends, family, or external accounts with absolutely zero processing delays.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-badge">💬</div>
+          <h3>24/7 Priority Support</h3>
+          <p>Get immediate assistance from real financial specialists whenever you need it, via secure chat, phone, or email.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- HOW IT WORKS --- -->
+  <section id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Simple Process</div>
+        <h2>Your journey to smarter banking.</h2>
+        <p>Opening an account is faster than making a cup of coffee. Follow these three simple steps to unlock premium benefits.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Apply Online</h3>
+          <p>Fill out our secure, 3-minute application form with your basic details.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Verify Identity</h3>
+          <p>Upload a quick photo of your ID for fast, automated verification.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Fund Account</h3>
+          <p>Link an existing account to deposit your initial funds securely.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Grow Wealth</h3>
+          <p>Start earning industry-leading APY and managing your budget effortlessly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- CORE GRID (PRODUCTS) --- -->
+  <section id="products" class="products-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Financial Products</div>
+        <h2>Tailored plans for every goal.</h2>
+        <p>Whether you want to maximize your savings yield, secure a premium credit card, or scale your business operations.</p>
+      </div>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-badge">Popular</span>
+            <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?ixid=M3wxMDAyMTMzfDB8MXxzZWFyY2h8MXx8YmFua2luZyUyMHdhbGxldHxlbnwxfHx8fDE3ODQ0NTg3NjB8MA&ixlib=rb-4.1.0&w=800&h=600&fit=crop&q=80" alt="Veridian Yield Savings Account" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/savings/600/600'">
+          </div>
+          <div class="product-info">
+            <h3>Veridian Yield Savings</h3>
+            <p>Maximize your savings with an industry-leading interest rate and automated wealth-building tools.</p>
+            <ul class="product-features-list">
+              <li>4.85% APY interest rate</li>
+              <li>No minimum balance required</li>
+              <li>Automatic round-up deposits</li>
+            </ul>
+            <a href="#signup-modal" class="btn btn-primary product-action">Open Savings Account</a>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-badge">Premium</span>
+            <img src="https://images.unsplash.com/photo-1783194941018-d97a6e6e27ba?ixid=M3wxMDAyMTMzfDB8MXxzZWFyY2h8MXx8Y3JlZGl0Y2FyZCUyMGx1eHVyeXxlbnwxfHx8fDE3ODQ0NTg3NjB8MA&ixlib=rb-4.1.0&w=800&h=600&fit=crop&q=80" alt="Veridian Apex Credit Card" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/credit/600/600'">
+          </div>
+          <div class="product-info">
+            <h3>Apex Metal Credit Card</h3>
+            <p>Our signature metal card designed for frequent travelers and lifestyle enthusiasts seeking maximum rewards.</p>
+            <ul class="product-features-list">
+              <li>3x points on travel & dining</li>
+              <li>Complimentary airport lounge access</li>
+              <li>Zero foreign transaction fees</li>
+            </ul>
+            <a href="#signup-modal" class="btn btn-primary product-action">Apply for Apex Card</a>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card">
+          <div class="product-img-wrapper">
+            <span class="product-badge">Business</span>
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixid=M3wxMDAyMTMzfDB8MXxzZWFyY2h8MXx8YnVzaW5lc3MlMjBvZmZpY2V8ZW58MXx8fHwxNzg0NDU4NzYxfDA&ixlib=rb-4.1.0&w=800&h=600&fit=crop&q=80" alt="Veridian Business Checking" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/business/600/600'">
+          </div>
+          <div class="product-info">
+            <h3>Veridian Business Pro</h3>
+            <p>Scale your business with integrated invoicing, unlimited transactions, and multi-user access permissions.</p>
+            <ul class="product-features-list">
+              <li>Free merchant tool integration</li>
+              <li>Dedicated business support line</li>
+              <li>Custom corporate expense cards</li>
+            </ul>
+            <a href="#signup-modal" class="btn btn-primary product-action">Open Business Account</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- TESTIMONIALS --- -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Member Stories</div>
+        <h2>What our community says.</h2>
+        <p>Real feedback from individuals and businesses who made the switch to Veridian National Bank.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">"Switching to Veridian was the best financial decision I've made. The mobile app is incredibly intuitive, and my savings are growing faster than ever with their high-yield APY."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&h=100&q=80" alt="Marcus Vance" onerror="this.onerror=null;this.src='https://picsum.photos/seed/author1/100/100'">
+            <div class="author-info">
+              <h4>Marcus Vance</h4>
+              <p>Software Engineer & Member since 2021</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">"As a small business owner, I need a bank that moves at my speed. Veridian's business checking has saved us thousands in unnecessary fees and simplified our accounting."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&h=100&q=80" alt="Elena Rostova" onerror="this.onerror=null;this.src='https://picsum.photos/seed/author2/100/100'">
+            <div class="author-info">
+              <h4>Elena Rostova</h4>
+              <p>Founder, Bloom Design Studio</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-rating">★★★★★</div>
+            <p class="testimonial-text">"The security features give me absolute peace of mind. I love receiving instant push notifications for every single transaction, and their support team is incredibly helpful."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100&q=80" alt="David Kim" onerror="this.onerror=null;this.src='https://picsum.photos/seed/author3/100/100'">
+            <div class="author-info">
+              <h4>David Kim</h4>
+              <p>Real Estate Investor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- CONTACT SECTION --- -->
+  <section id="contact" class="contact-section">
+    <div class="container contact-grid">
+      <div class="contact-info-panel">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span>Get In Touch</div>
+          <h2 style="margin-top: 0.5rem; margin-bottom: 1rem;">We're here to help you succeed.</h2>
+          <p>Have questions about opening an account, loans, or business services? Reach out to our dedicated support team today.</p>
+        </div>
+
+        <div class="contact-detail-card">
+          <div class="contact-detail-icon">📞</div>
+          <div class="contact-detail-text">
+            <h4>Call Us Directly</h4>
+            <p>1-800-VERIDIAN (Mon - Fri, 8 AM - 8 PM EST)</p>
+          </div>
+        </div>
+
+        <div class="contact-detail-card">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">
+            <h4>Email Support</h4>
+            <p>support@veridiannational.com</p>
+          </div>
+        </div>
+
+        <div class="contact-detail-card">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <h4>Corporate Headquarters</h4>
+            <p>100 Financial Plaza, Suite 400, New York, NY 10005</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper">
+        <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='✓ Message Sent!';">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" placeholder="Sarah" required>
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" placeholder="Jenkins" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" placeholder="sarah@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="inquiry-type">Inquiry Type</label>
+            <select id="inquiry-type">
+              <option>General Account Opening</option>
+              <option>Apex Credit Card Program</option>
+              <option>High-Yield Savings Inquiry</option>
+              <option>Business Banking Solutions</option>
+              <option>Other / Support</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" rows="4" placeholder="How can our team help you today?" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-accent">Send Secure Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- --- PLAYFUL CTA BAND --- -->
+  <section class="cta-band">
+    <div class="container cta-band-content">
+      <h2>Ready to take control of your financial future?</h2>
+      <p>Join over 140,000 members enjoying high-yield interest, premium card benefits, and zero hidden fees.</p>
+      <a href="#signup-modal" class="btn btn-accent">Open Your Free Account</a>
+    </div>
+  </section>
+
+  <!-- --- FOOTER --- -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a href="#home" class="logo">
+            <div class="logo-icon">V</div>
+            Veridian
+          </a>
+          <p>Secure, modern digital banking designed to elevate your financial freedom. Experience premium rates and zero hidden fees.</p>
+          <div class="social-links">
+            <a href="#" class="social-btn">🐦</a>
+            <a href="#" class="social-btn">💼</a>
+            <a href="#" class="social-btn">📸</a>
+          </div>
+        </div>
+
+        <div class="foot-col">
+          <h4>Banking Products</h4>
+          <ul>
+            <li><a href="#products">High-Yield Savings</a></li>
+            <li><a href="#products">Apex Credit Cards</a></li>
+            <li><a href="#products">Business Accounts</a></li>
+            <li><a href="#products">Checking Accounts</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#services">Security Standards</a></li>
+            <li><a href="#services">Mobile App Features</a></li>
+            <li><a href="#testimonials">Member Reviews</a></li>
+            <li><a href="#contact">Help Center & FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="foot-col">
+          <h4>About Veridian</h4>
+          <ul>
+            <li><a href="#home">Our Mission</a></li>
+            <li><a href="#home">Careers</a></li>
+            <li><a href="#contact">Press & Media</a></li>
+            <li><a href="#contact">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="foot-bottom">
+        <p>&copy; 2026 Veridian National Bank. Member FDIC. Equal Housing Lender.</p>
+        <div class="foot-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Security Disclosure</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- --- AUTH MODAL: SIGN IN --- -->
+  <div id="signin-modal" class="modal">
+    <div class="modal-content">
+      <a href="#home" class="modal-close">&times;</a>
+      <h2>Welcome Back</h2>
+      <p>Sign in to your secure Veridian dashboard.</p>
+      <form class="modal-form" onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='✓ Logged in — demo';">
+        <div class="form-group">
+          <label for="signin-email">Email Address</label>
+          <input type="email" id="signin-email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="signin-password">Password</label>
+          <input type="password" id="signin-password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In Securely</button>
+      </form>
+      <div class="modal-footer">
+        Don't have an account? <a href="#signup-modal">Open one here</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- AUTH MODAL: SIGN UP --- -->
+  <div id="signup-modal" class="modal">
+    <div class="modal-content">
+      <a href="#home" class="modal-close">&times;</a>
+      <h2>Open Account</h2>
+      <p>Start your 3-minute secure setup process.</p>
+      <form class="modal-form" onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='✓ Account Created — demo';">
+        <div class="form-group">
+          <label for="signup-name">Full Legal Name</label>
+          <input type="text" id="signup-name" placeholder="Sarah Jenkins" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Create Password</label>
+          <input type="password" id="signup-password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-accent" style="width: 100%;">Create Secure Account</button>
+      </form>
+      <div class="modal-footer">
+        Already have an account? <a href="#signin-modal">Sign in here</a>
+      </div>
+    </div>
+  </div>
+
+<script id="__mintsite_link_interceptor__">(function(){if(window.__mintsiteLinkInterceptor)return;window.__mintsiteLinkInterceptor=true;function showPage(name){  var pages=document.querySelectorAll('[data-page]');  if(pages.length<2)return false;  var found=false;  for(var i=0;i<pages.length;i++){    var n=(pages[i].getAttribute('data-page')||'').toLowerCase();    if(n===name){pages[i].hidden=false;pages[i].style.display='';found=true}    else pages[i].hidden=true;  }  if(found)window.scrollTo({top:0,behavior:'smooth'});  return found;}document.addEventListener('click',function(e){  var a=e.target.closest&&e.target.closest('a');  if(!a)return;  var href=(a.getAttribute('href')||'').trim();  if(href.charAt(0)==='#'&&href.length>1){    e.preventDefault();    var id=href.slice(1).toLowerCase();    if(showPage(id))return;    var el=document.getElementById(id);    if(el){el.scrollIntoView({behavior:'smooth',block:'start'})}  } else if(href&&href!=='#'&&href.indexOf('javascript:')!==0){    e.preventDefault();    try{window.open(href,'_blank','noopener,noreferrer')}catch(_){}  }},true);})();</script>
+</body>
+</html>
